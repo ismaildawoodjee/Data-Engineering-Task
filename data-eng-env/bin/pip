@@ -1,4 +1,4 @@
-#!/home/xavier/Documents/Stuff/Data-Engineering-Task/data-eng-env/bin/python3.9
+#!/home/xavier/Documents/Stuff/Data-Engineering-Task/data-eng-env/bin/python
 # -*- coding: utf-8 -*-
 import re
 import sys
