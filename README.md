@@ -16,4 +16,4 @@ I am ready to start writing the Python script.
 
 First, I try to understand the APIs given in the [CoinGecko API page](https://www.coingecko.com/api/documentations/v3), pinging the API server to test it out. It works when it gives a 200 status code, which it does. Also, I was going to use the Python wrapper, then I realized it might be better to just use `requests` where I can specify the parameters more easily.
 
-Next, I want to test out the `simple/price` request since it provides the current price of a crypto in terms of other currencies/cryptos while also including the 24h change and last update time. However, I don't know what the ID for Ethereum is, so I will need to look at the `coins/list` request to see the specific ID for Ethereum. 
+Next, I want to test out the `simple/price` request since it provides the current price of a crypto in terms of other currencies/cryptos while also including the 24h change and last update time. However, I don't know what the ID for Ethereum is, so I will need to look at the `coins/list` request to see the specific ID for Ethereum.
