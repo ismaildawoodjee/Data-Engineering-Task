@@ -27,7 +27,7 @@ def get_data(payload, params=None):
 
 data = get_data(payload=COINS_LIST)
 coins_df = pd.DataFrame(data)
-coins_df.to_csv("list_of_coins.csv", index=False)
+coins_df.to_csv("./data/list_of_coins.csv", index=False)
 
 # ethereum = coins_df[coins_df['name'] == 'Ethereum']
 # print(ethereum)
