@@ -23,13 +23,14 @@ def get_data(payload, params=None):
     """Returns data from API server in json format."""
 
     response = requests.get(URL + payload, params=params)
-    
     return response.json()
 
+data = get_data(payload=COINS_LIST)
+coins_df = pd.DataFrame(data)
+coins_df.to_csv("list_of_coins.csv", index=False)
 
-coins_df = pd.DataFrame(get_data(payload=COINS_LIST))
-ethereum = coins_df[coins_df['name'] == 'Ethereum']
-print(ethereum)
+# ethereum = coins_df[coins_df['name'] == 'Ethereum']
+# print(ethereum)
 
 # print(coins_df.shape) # 7673 coins
 # print(coins_df.head())
