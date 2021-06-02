@@ -18,4 +18,4 @@ First, I try to understand the APIs given in the [CoinGecko API page](https://ww
 
 Next, I want to test out the `simple/price` request since it provides the current price of a crypto in terms of other currencies/cryptos while also including the 24h change and last update time. However, I don't know what the ID for Ethereum is, so I will need to look at the `coins/list` request to see the specific ID for Ethereum. To do this, I wrote a couple of functions to print out the data and put it into a Pandas dataframe. The ID for Ethereum turned out to be `ethereum` and there are over 7600 coins listed on CoinGecko.
 
-Before going any further with data collection, I want to write the `coins_df` list of coins dataframe as a CSV file into my system, create a `requirements.txt` and Dockerize the script so that anyone can run it on their own local machine. 
+Before going any further with data collection, I want to write the `coins_df` list of coins dataframe as a CSV file into my system, create a `requirements.txt` and Dockerize the script so that anyone can run it on their own local machine. However, this proved to be more complicated than I expected.
