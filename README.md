@@ -11,3 +11,7 @@ The first thing I did was to create a new folder in my local machine (Linux OS),
 Now, I want to track all the changes I made since the initialization. I stage all the changes using `git add .` and make a commit by writing `git commit -m "First commit; created venv and README"`. But before pushing my changes, I will need a GitHub repo first. I am using VS Code with the source control extension, so I simply create a new repository with the name "Data-Engineering-Task" from the "Branches" tab (after signing in with my GitHub account). Once created, it automatically pushes the changes to the new repo. Finally, I install CoinGecko's Python wrapper and create a new Python script using `touch ethprice.py`. I write these steps in the README file and push the new changes to my repo using `git push origin main` (I already configured my GitHub to use `main` instead of `master` as the default branch).
 
 I am ready to start writing the Python script.
+
+## Extracting Data from CoinGecko
+
+First, I try to understand the APIs given in the [CoinGecko API page](), pinging the API server to test it out. It works when it gives a 200 status code, which it does. 
