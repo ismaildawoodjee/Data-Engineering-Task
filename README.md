@@ -4,7 +4,13 @@
 
 This is a data engineering task to extract the 10 latest prices for the cryptocurrency Ethereum, from CoinGecko's public API. I will be using the Python wrapper for CoinGecko's API, provided on their [GitHub page](https://github.com/man-c/pycoingecko).
 
-## Setting up the Environment
+### Instructions for Use
+
+
+
+## Walkthrough of this Task
+
+### Setting up the Environment
 
 The first thing I did was to create a new folder in my local machine (Linux OS), and initialize a Git repository using `git init`. After that, I checked my Python version using `python3 --version`. It wasn't the latest version (it was 3.8.5), so I installed the latest version following the instructions from this [website](https://linuxize.com/post/how-to-install-python-3-9-on-ubuntu-20-04/), and then set up a virtual environment using `python3.9 -m venv data-eng-env`. I was already inside the repo that I created, so before doing anything, I activated the venv using `source data-eng-env/bin/activate`. Next, I created a README.md file using `touch README.md` and wrote the title of this project there. To ensure that I am inside the venv, I can use `env | grep VIRTUAL_ENV`, by piping grep with env, and checking that I am in the correct virtual environment.
 
@@ -14,7 +20,7 @@ Now, I want to track all the changes I made since the initialization. I stage al
 
 I am ready to start writing the Python script.
 
-## Extracting Data from CoinGecko
+### Extracting Data from CoinGecko
 
 First, I try to understand the APIs given in the [CoinGecko API page](https://www.coingecko.com/api/documentations/v3), pinging the API server to test it out. It works when it gives a 200 status code, which it does. Also, I was going to use the Python wrapper, then I realized it might be better to just use `requests` where I can specify the parameters more easily.
 
@@ -22,7 +28,7 @@ Next, I want to test out the `simple/price` request since it provides the curren
 
 Before going any further with data collection, I want to write the `coins_df` list of coins dataframe as a CSV file into my system, create a `requirements.txt` and Dockerize the script so that anyone can run it on their own local machine. However, this proved to be more complicated than I expected.
 
-### Minor Bug
+#### Minor Bug
 
 In my Ubuntu laptop, I created the `requirements.txt` file using `pip freeze > requirements.txt` because surprisingly, in contradiction to the info given [here](https://stackoverflow.com/questions/31684375/automatically-create-requirements-txt), using `pipreqs` resulted in generating over 100 dependencies but `pip freeze` generated much less. I also created a Dockerfile according to the [instructions](https://www.freecodecamp.org/news/docker-101-fundamentals-and-practice-edb047b71a51/), using a Python 3.9.5 image, telling Docker to install the dependencies from `requirements.txt` and running the Python script.
 
@@ -40,7 +46,7 @@ In this case, I fixed the bug by excluding the line containing `pkg-resources` f
 
 The `grep` command with the `-v` flag excludes the line containing `pkg-resources` from appearing in the `requirements.txt` file, so it will no longer be installed as a dependency.
 
-### Building the Dockerfile and Running the Container
+#### Building the Dockerfile and Running the Container
 
 After fixing this bug, I went back to my Windows machine, cloned the latest repo and successfully built the Dockerfile using `docker build -t trialtask`.
 
@@ -54,4 +60,4 @@ I also modified the Dockerfile to create a `/data` directory for this purpose. R
 
 ![CSV file successfully written to local host](images/csv_file_created.png "CSV file successfully written to local host")
 
-## Getting More Data
+### Getting More Data
