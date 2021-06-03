@@ -22,15 +22,15 @@ Next, I want to test out the `simple/price` request since it provides the curren
 
 Before going any further with data collection, I want to write the `coins_df` list of coins dataframe as a CSV file into my system, create a `requirements.txt` and Dockerize the script so that anyone can run it on their own local machine. However, this proved to be more complicated than I expected.
 
-#### Minor Bug
+### Minor Bug
 
 In my Ubuntu laptop, I created the `requirements.txt` file using `pip freeze > requirements.txt` because surprisingly, in contradiction to the info given [here](https://stackoverflow.com/questions/31684375/automatically-create-requirements-txt), using `pipreqs` resulted in generating over 100 dependencies but `pip freeze` generated much less. I also created a Dockerfile according to the [instructions](https://www.freecodecamp.org/news/docker-101-fundamentals-and-practice-edb047b71a51/), using a Python 3.9.5 image, telling Docker to install the dependencies from `requirements.txt` and running the Python script.
 
-However there was a [bug](https://stackoverflow.com/questions/39577984/what-is-pkg-resources-0-0-0-in-output-of-pip-freeze-command) that occurs within Python virtual envs created in Ubuntu. 
+However there was a [bug](https://stackoverflow.com/questions/39577984/what-is-pkg-resources-0-0-0-in-output-of-pip-freeze-command) that occurs within Python virtual envs created in Ubuntu.
 
 ![Bug when building Dockerfile in Windows](images/bug_pkgresources.png "Bug when building Dockerfile in Windows")
 
-I only found out about this after building the Docker file in my Windows laptop, to test if my script works on Windows. 
+I only found out about this after building the Docker file in my Windows laptop, to test if my script works on Windows.
 
 ![Just exclude pkg-resources from pip freeze](images/resolving_bug.png "Just exclude pkg-resources from pip freeze")
 
@@ -40,7 +40,7 @@ In this case, I fixed the bug by excluding the line containing `pkg-resources` f
 
 The `grep` command with the `-v` flag excludes the line containing `pkg-resources` from appearing in the `requirements.txt` file, so it will no longer be installed as a dependency.
 
-#### Building the Dockerfile and Running the Container
+### Building the Dockerfile and Running the Container
 
 After fixing this bug, I went back to my Windows machine, cloned the latest repo and successfully built the Dockerfile using `docker build -t trailtask`.
 
@@ -50,9 +50,8 @@ However, just using `docker run trialtask` did not produce the CSV output that I
 
     docker run -v C:\Users\DELL\Desktop\Stuff\Data-Engineering-Task:/app/data detask
 
-I also modified the Dockerfile to create a `/data` directory for this purpose. Running the above command successfully outputted the CSV file that I wanted into my local machine. 
+I also modified the Dockerfile to create a `/data` directory for this purpose. Running the above command successfully outputted the CSV file that I wanted into my local machine (and it was deleted afterwards).
 
-
+![CSV file successfully written to local host](images/csv_file_created.png "CSV file successfully written to local host")
 
 ## Getting More Data
-
