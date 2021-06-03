@@ -84,11 +84,16 @@ if __name__ == "__main__":
     # unfortunately, this gave a JSONDecodeError that I couldn't fix
     # coin_ids = [coin["id"] for coin in coins_data]
     
-    # get cryptocurrency current prices ordered by market cap
+    # get 10 cryptocurrencies' current prices ordered by market cap
     sp_data = get_data(payload=SIMPLE_PRICE, params=SP_PARAMS)
     crypto_df = pd.DataFrame(sp_data).transpose()
     crypto_df['last_updated_at'] = [datetime.fromtimestamp(time) for time in crypto_df['last_updated_at']]
     crypto_df = crypto_df.sort_values(by="usd_market_cap", ascending=False).reset_index()
+    crypto_df.rename({
+        "index": "name",
+        "usd": "price_in_usd",
+        "btc": "price_in_btc"
+    })
     
     # get the OHLC (open-high-low-close) prices for Ethereum in the last 14 days
     eth_data = get_data(payload=COIN_OHLC, params=OHLC_PARAMS)

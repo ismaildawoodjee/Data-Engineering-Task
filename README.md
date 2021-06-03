@@ -2,11 +2,37 @@
 
 ## Introduction
 
-This is a data engineering task to extract the 10 latest prices for the cryptocurrency Ethereum, from CoinGecko's public API. I will be using the Python wrapper for CoinGecko's API, provided on their [GitHub page](https://github.com/man-c/pycoingecko).
+This is a data engineering task to extract the 10 latest prices for the cryptocurrency Ethereum, from CoinGecko's public API. I will be using the Python wrapper for CoinGecko's API, provided on their [GitHub page](https://github.com/man-c/pycoingecko). However, I ended up not using the Python wrapper.
+
+The Python script sends GET requests based on the APIs on CoinGecko, converts the JSON responses into a Pandas dataframe, performs some transformations on the data (such as renaming columns and converting Unix timestamp to datetime), and writes the dataframe as a CSV into the local host. This process is written in a Dockerfile, which can be built and ran using Docker, and upon doing that, outputs three CSV files into the user's machine.
+
+The `list_of_coins.csv` cointains the ID, name and symbol of all the cryptocurrencies listed on CoinGecko, the `ten_cryptos_data.csv` contains the current price and details of 10 example cryptocurrencies including Ethereum, and the `ethereum_pasttwo_weeks.csv` file contains the OHLC (open-high-low-close or candlestick data) data of only Ethereum in the past two weeks, with a granularity of 4 hours.
 
 ### Instructions for Use
 
+If you have Git installed, you can navigate to a file, where you can clone this repository by typing into the terminal:
 
+    git clone https://github.com/ismaildawoodjee/Data-Engineering-Task
+
+Otherwise, you can download the ZIP file and unzip it in the current directory of your choice. Yet another way would be to use VS Code and clone the repository with one click.
+
+Once that is done, ensure that you have Docker installed by typing:
+
+    docker --version
+
+If you don't have Docker, install it from this [website](https://docs.docker.com/docker-for-windows/install/), assuming that you are on windows. Open Docker Desktop and go back to your terminal.
+
+The next step is to build a Docker image from the Dockerfile by typing:
+
+    docker build -t name_of_your_image .
+
+In my case, I typed `docker build -t trialtask .`. The `-t` flag stands for "tag", which tags my image with the name "trialtask". The dot `.` at the end indicates that the Dockerfile is located in the current directory that I am in. Building the image may take a few minutes. For me, it took about 7-8 minutes for the first build.
+
+Once the image has been built, go to the Images tab on Docker Desktop to see your new image with the given name. It is currently not running yet. To create a container from this image and run it, type:
+
+    docker run -v directory\for\saving\your\files:/app/data name_of_your_image
+
+This run command mounts a volume driver so that the data that was created inside the container at `/app/data` gets written into the `directory\for\saving\your\files`. In my case, I typed `docker run -v C:\Users\DELL\Desktop\Stuff\Data-Engineering-Task:/app/data trialtask`, which ran successfully and produced three CSV files as expected.
 
 ## Walkthrough of this Task
 
@@ -61,3 +87,7 @@ I also modified the Dockerfile to create a `/data` directory for this purpose. R
 ![CSV file successfully written to local host](images/csv_file_created.png "CSV file successfully written to local host")
 
 ### Getting More Data
+
+
+
+### Conclusion
