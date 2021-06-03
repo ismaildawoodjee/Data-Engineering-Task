@@ -10,7 +10,7 @@ The `list_of_coins.csv` cointains the ID, name and symbol of all the cryptocurre
 
 ### Instructions for Use
 
-If you have Git installed, you can navigate to a file, where you can clone this repository by typing into the terminal:
+If you have Git installed, you can navigate to a folder where you want to place the files, and clone this repository by typing into the terminal:
 
     git clone https://github.com/ismaildawoodjee/Data-Engineering-Task
 
