@@ -42,13 +42,13 @@ The `grep` command with the `-v` flag excludes the line containing `pkg-resource
 
 ### Building the Dockerfile and Running the Container
 
-After fixing this bug, I went back to my Windows machine, cloned the latest repo and successfully built the Dockerfile using `docker build -t trailtask`.
+After fixing this bug, I went back to my Windows machine, cloned the latest repo and successfully built the Dockerfile using `docker build -t trialtask`.
 
 ![Docker image created. Why is it so large?](images/why_so_large.png "Docker image created. Why is it so large?")
 
 However, just using `docker run trialtask` did not produce the CSV output that I expected. It took me some digging around to find out that I needed to mount a file drive, so that the CSV that is produced by running the container is also outputted into my local machine. According to a post from [here](https://phoenixnap.com/kb/docker-run-command-with-examples), Docker containers remove all the data they produce after they stop running. The solution is to mount a volume from your local host and write the CSV file into a separate folder `/data` that won't get destroyed after the container stops running. In my case, instead of running `docker run trialtask`, I needed to run
 
-    docker run -v C:\Users\DELL\Desktop\Stuff\Data-Engineering-Task:/app/data detask
+    docker run -v C:\Users\DELL\Desktop\Stuff\Data-Engineering-Task:/app/data trialtask
 
 I also modified the Dockerfile to create a `/data` directory for this purpose. Running the above command successfully outputted the CSV file that I wanted into my local machine (and it was deleted afterwards).
 
