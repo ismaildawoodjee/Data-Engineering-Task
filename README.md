@@ -74,7 +74,7 @@ The `grep` command with the `-v` flag excludes the line containing `pkg-resource
 
 #### Building the Dockerfile and Running the Container
 
-After fixing this bug, I went back to my Windows machine, cloned the latest repo and successfully built the Dockerfile using `docker build -t trialtask`.
+After fixing this bug, I went back to my Windows machine, cloned the latest repo and successfully built the Dockerfile using `docker build -t trialtask .`.
 
 ![Docker image created. Why is it so large?](images/why_so_large.png "Docker image created. Why is it so large?")
 
@@ -82,12 +82,18 @@ However, just using `docker run trialtask` did not produce the CSV output that I
 
     docker run -v C:\Users\DELL\Desktop\Stuff\Data-Engineering-Task:/app/data trialtask
 
-I also modified the Dockerfile to create a `/data` directory for this purpose. Running the above command successfully outputted the CSV file that I wanted into my local machine (and it was deleted afterwards).
+I also modified the Dockerfile to create a `/data` directory for this purpose. Running the above command successfully outputted the CSV file that I wanted into my local machine (and I deleted it afterwards).
 
 ![CSV file successfully written to local host](images/csv_file_created.png "CSV file successfully written to local host")
 
 ### Getting More Data
 
+Now that I have a CSV file about the names, symbols and IDs of all the coins listed on CoinGecko, I can get the latest/current price of all of these cryptos (not only Ethereum) using the `/simple/price` GET request provided on the API page. Unfortunately, passing in all the coin IDs by looping over them gave a JSONDecodeError, with the program complaining that nothing was returned by the server when something was expected. After Stackoverflowing around, I suspect that most of the 7600 coins might be so obscure that there may not be enough data about their 24hr change in price or last update time or etc., resulting in empty responses to my requests.
 
+No problem. I don't need the details of all 7000 irrelevant cryptos anyway. I make a list of 10 easy to spell cryptos and get their details into a dataframe, sorting them by market cap, converting from Unix timestamps to datetime and outputting the result as a CSV file.
+
+Finally, I want to get historical time-dependent data about Ethereum only. I can do this using the OHLC GET request, by specifying the coin ID, the currency to measure against (US$) and the number of days into the past, which I specified as 14 days. This provides me with candlestick data about Ethereum in intervals of 4 hours, so that I collected the latest 84 instances of Ethereum price. One minor problem was that the Unix timestamp data provided by the API was mistakenly multiplied by 1000, which I discovered when converting timestamp to datetime and got an error saying Year 54000 does not exist, or something along those lines. Dealing with this was straightforward: just divide the timestamps by 1000 before converting.
+
+One last thing that I could have done was to put the transformation steps within functions of their own, instead of writing them under `__main__`.
 
 ### Conclusion
