@@ -1,0 +1,4 @@
+[0m2021.06.08 01:17:17 INFO  Started: Metals version 0.10.4 in workspace '/home/xavier/Documents/Stuff/Data-Engineering-Task' for client Visual Studio Code 1.56.2.[0m
+[0m2021.06.08 01:17:22 INFO  time: initialize in 5.03s[0m
+[0m2021.06.08 01:17:22 WARN  Build server is not auto-connectable.[0m
+[0m2021.06.08 01:17:22 WARN  no build tool detected in workspace '/home/xavier/Documents/Stuff/Data-Engineering-Task'. The most common cause for this problem is that the editor was opened in the wrong working directory, for example if you use sbt then the workspace directory should contain build.sbt. [0m
