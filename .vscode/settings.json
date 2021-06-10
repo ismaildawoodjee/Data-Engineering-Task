@@ -1,5 +1,7 @@
 {
     "files.watcherExclude": {
         "**/target": true
-    }
+    },
+    "python.pythonPath": "data-eng-env/bin/python",
+    "git.ignoreLimitWarning": true
 }

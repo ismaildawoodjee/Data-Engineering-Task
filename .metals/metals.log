@@ -2,3 +2,6 @@
 [0m2021.06.08 01:17:22 INFO  time: initialize in 5.03s[0m
 [0m2021.06.08 01:17:22 WARN  Build server is not auto-connectable.[0m
 [0m2021.06.08 01:17:22 WARN  no build tool detected in workspace '/home/xavier/Documents/Stuff/Data-Engineering-Task'. The most common cause for this problem is that the editor was opened in the wrong working directory, for example if you use sbt then the workspace directory should contain build.sbt. [0m
+Jun 08, 2021 1:25:56 AM org.eclipse.lsp4j.jsonrpc.services.GenericEndpoint notify
+INFO: Unsupported notification method: $/setTrace
+[0m2021.06.08 01:27:37 INFO  shutting down Metals[0m
