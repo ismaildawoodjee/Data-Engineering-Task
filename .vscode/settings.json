@@ -2,6 +2,6 @@
     "files.watcherExclude": {
         "**/target": true
     },
-    "python.pythonPath": "data-eng-env/bin/python",
+    "python.pythonPath": "C:\\Users\\DELL\\AppData\\Local\\Programs\\Python\\Python39\\python.exe",
     "git.ignoreLimitWarning": true
 }
