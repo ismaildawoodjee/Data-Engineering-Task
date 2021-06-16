@@ -1,7 +1,0 @@
-{
-    "files.watcherExclude": {
-        "**/target": true
-    },
-    "python.pythonPath": "C:\\Users\\DELL\\AppData\\Local\\Programs\\Python\\Python39\\python.exe",
-    "git.ignoreLimitWarning": true
-}
