@@ -216,3 +216,5 @@ on my Linux and Windows PCs and produced 3 CSV files as expected. One final
 improvement that I could have done was to explore more Docker in terms of 
 writing a Docker-Compose file, although it might not be needed for such a
 simple Docker file. 
+
+![Running the Docker container produced 3 CSV files](images/docker_run_successful.png "Running the Docker container produced 3 CSV files")
