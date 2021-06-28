@@ -1,5 +1,18 @@
 # Data Engineering Task
 
+## Contents
+
+- [Introduction](#intro)
+    - [Instructions for Use](#usage)
+- [Walkthrough of this Task](#walk)
+    - [Setting up the Environment](#setup)
+    - [Extracting Data from CoinGecko](#extract)
+        - [Minor Bug](#bug)
+        - [Building the Dockerfile and Running the Container](#dockrun)
+    - [Getting More Data](#more)
+- [Conclusion](#conc)
+
+<a name="intro"></a>
 ## Introduction
 
 This is a data engineering task to extract the 10 latest prices for the 
@@ -22,6 +35,7 @@ and the `ethereum_pasttwo_weeks.csv` file contains the OHLC
 (open-high-low-close or candlestick data) data of only Ethereum in the past two 
 weeks, with a granularity of 4 hours.
 
+<a name="usage"></a>
 ### Instructions for Use
 
 If you have Git installed, you can navigate to a folder where you want to place
@@ -63,8 +77,10 @@ inside the container at `/app/data` gets written into the
 `docker run -v C:\Users\DELL\Desktop\Stuff\Data-Engineering-Task:/app/data 
 trialtask`, which ran successfully and produced three CSV files as expected.
 
+<a name="walk"></a>
 ## Walkthrough of this Task
 
+<a name="setup"></a>
 ### Setting up the Environment
 
 The first thing I did was to create a new folder in my local machine (Linux 
@@ -95,6 +111,7 @@ to my repo using `git push origin main` (I already configured my GitHub to use
 
 I am ready to start writing the Python script.
 
+<a name="extract"></a>
 ### Extracting Data from CoinGecko
 
 First, I try to understand the APIs given in the 
@@ -117,6 +134,7 @@ list of coins dataframe as a CSV file into my system, create a
 `requirements.txt` and Dockerize the script so that anyone can run it on their 
 own local machine. However, this proved to be more complicated than I expected.
 
+<a name="bug"></a>
 #### Minor Bug
 
 In my Ubuntu laptop, I created the `requirements.txt` file using 
@@ -148,6 +166,7 @@ The `grep` command with the `-v` flag excludes the line containing
 `pkg-resources` from appearing in the `requirements.txt` file, so it will no 
 longer be installed as a dependency.
 
+<a name="dockrun"></a>
 #### Building the Dockerfile and Running the Container
 
 After fixing this bug, I went back to my Windows machine, cloned the latest 
@@ -173,6 +192,7 @@ into my local machine (and I deleted it afterwards).
 
 ![CSV file successfully written to local host](images/csv_file_created.png "CSV file successfully written to local host")
 
+<a name="more"></a>
 ### Getting More Data
 
 Now that I have a CSV file about the names, symbols and IDs of all the coins 
@@ -201,6 +221,7 @@ to datetime and got an error saying Year 54000 does not exist, or something
 along those lines. Dealing with this was straightforward: just divide the 
 timestamps by 1000 before converting.
 
+<a name="conc"></a>
 ### Conclusion
 
 In this project, I wanted to extract the latest 10 prices of the cryptocurrency
